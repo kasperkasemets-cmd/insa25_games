@@ -75,3 +75,16 @@ button {
 button:hover { background-color: #2980b9; }
 button:active { transform: scale(0.95); }
 button:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+.back {
+  margin-top: 1rem;
+}
+
+.back a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.back a:hover {
+  text-decoration: underline;
+}

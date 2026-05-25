@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Martin — mäng</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; background: #0a0e12; color: #e8f0ff; display: grid; place-items: center; padding: 1.5rem; }
-    a { color: #5eead4; }
-    .box { text-align: center; max-width: 28rem; line-height: 1.6; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Martin — DOOM SCHOOL</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="box">
-    <h1>Martin</h1>
-    <p>Siia tuleb sinu mäng. Asenda see fail või lisa siia oma HTML/CSS/JS.</p>
-    <p><a href="../../index.html">← tagasi dashboardile</a></p>
-  </div>
+
+<canvas id="game"></canvas>
+
+<div id="hud">
+  <div>HP: <span id="hp">100</span></div>
+  <div>AMMO: ∞</div>
+  <a href="../../index.html">← tagasi dashboardile</a>
+</div>
+
+<div id="crosshair"></div>
+
+<script src="game.js"></script>
 </body>
 </html>
