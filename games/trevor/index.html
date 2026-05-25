@@ -1,21 +1,129 @@
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trevor — mäng</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kosmose Põiklemine</title>
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; background: #0a0e12; color: #e8f0ff; display: grid; place-items: center; padding: 1.5rem; }
-    a { color: #5eead4; }
-    .box { text-align: center; max-width: 28rem; line-height: 1.6; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    canvas {
+      display: block;
+      background: linear-gradient(to bottom, #000010, #000000);
+    }
+
+    #info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Trevor</h1>
-    <p>Siia tuleb sinu mäng. Asenda see fail või lisa siia oma HTML/CSS/JS.</p>
-    <p><a href="../../index.html">← tagasi dashboardile</a></p>
-  </div>
+  <div id="info">Punktid: <span id="score">0</span></div>
+  <canvas id="game"></canvas>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const scoreText = document.getElementById('score');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const player = {
+      x: canvas.width / 2 - 25,
+      y: canvas.height - 100,
+      width: 50,
+      height: 50,
+      speed: 7
+    };
+
+    const keys = {};
+    const meteors = [];
+
+    let score = 0;
+    let gameOver = false;
+
+    document.addEventListener('keydown', e => {
+      keys[e.key] = true;
+    });
+
+    document.addEventListener('keyup', e => {
+      keys[e.key] = false;
+    });
+
+    function createMeteor() {
+      meteors.push({
+        x: Math.random() * (canvas.width - 40),
+        y: -40,
+        width: 40,
+        height: 40,
+        speed: 3 + Math.random() * 5
+      });
+    }
+
+    function update() {
+      if (gameOver) return;
+
+      if (keys['ArrowLeft'] && player.x > 0) {
+        player.x -= player.speed;
+      }
+
+      if (keys['ArrowRight'] && player.x < canvas.width - player.width) {
+        player.x += player.speed;
+      }
+
+      meteors.forEach((meteor, index) => {
+        meteor.y += meteor.speed;
+
+        if (
+          player.x < meteor.x + meteor.width &&
+          player.x + player.width > meteor.x &&
+          player.y < meteor.y + meteor.height &&
+          player.y + player.height > meteor.y
+        ) {
+          gameOver = true;
+          alert('Mäng läbi! Punktid: ' + score);
+        }
+
+        if (meteor.y > canvas.height) {
+          meteors.splice(index, 1);
+          score++;
+          scoreText.textContent = score;
+        }
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'cyan';
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+
+      ctx.fillStyle = 'red';
+      meteors.forEach(meteor => {
+        ctx.fillRect(meteor.x, meteor.y, meteor.width, meteor.height);
+      });
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    setInterval(createMeteor, 700);
+
+    loop();
+  </script>
 </body>
 </html>
