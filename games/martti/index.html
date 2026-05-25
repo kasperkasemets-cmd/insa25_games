@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Martti — mäng</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; background: #0a0e12; color: #e8f0ff; display: grid; place-items: center; padding: 1.5rem; }
-    a { color: #5eead4; }
-    .box { text-align: center; max-width: 28rem; line-height: 1.6; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Püüa Ring Kinni!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="box">
-    <h1>Martti</h1>
-    <p>Siia tuleb sinu mäng. Asenda see fail või lisa siia oma HTML/CSS/JS.</p>
-    <p><a href="../../index.html">← tagasi dashboardile</a></p>
-  </div>
+
+    <h1>Püüa Ring Kinni!</h1>
+    
+    <div class="info-board">
+        <div>Aeg: <span id="time">30</span>s</div>
+        <div>Punktid: <span id="score">0</span></div>
+    </div>
+
+    <div id="game-container">
+        <div id="target"></div>
+    </div>
+
+    <button id="start-btn">Alusta Mängu</button>
+
+    <script src="script.js"></script>
 </body>
-</html>
