@@ -2,8 +2,6 @@
 
 See kaust on INSA25 mängude kogumik: ühine **dashboard** ja iga õpilase oma mäng eraldi kaustas. Backend puudub — kõik on staatiline HTML, CSS ja JavaScript.
 
-ITA25 rühma sarnane struktuur on repo juures (`../`); INSA25 töötab iseseisvalt selle kausta sees.
-
 ## Mis on dashboard?
 
 Fail `index.html` näitab kõigi mängijate kaarte. Kaardile klõpsates avaneb vastava õpilase mäng aadressil `games/<slug>/` (tavaliselt `index.html` selles kaustas).
